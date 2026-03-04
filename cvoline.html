@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giovanni Gut | Coach, AI Trainer, Poeta</title>
+    <meta name="description" content="Giovanni Gut — Professional Coach ICF-AICP, AI Trainer e Poeta. Metto in dialogo coaching, intelligenza artificiale e parola per accompagnare persone e organizzazioni nel cambiamento.">
+    <meta name="author" content="Giovanni Gut">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Giovanni Gut | Coach, AI Trainer, Poeta">
+    <meta property="og:description" content="Metto in dialogo mondi che di solito non si parlano. Lo faccio con le parole — e con l'intelligenza artificiale.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="it_IT">
+
+    <!-- Favicon SVG -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23E53935'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='serif' font-weight='700' font-size='16' fill='white'%3EGG%3C/text%3E%3C/svg%3E">
+
+    <!-- Fonts: 2 font (Playfair Display + Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --indaco: #5C4FE8;
+            --rosso: #E53935;
+            --abisso: #1A1A2E;
+            --grafite: #3D3D56;
+            --cenere: #8888A0;
+            --sabbia: #E8E4DD;
+            --avorio: #F5F0EB;
+            --avorio-warm: #F8F5F0;
+            --bianco: #FFFFFF;
+            --font-title: 'Playfair Display', serif;
+            --font-ui: 'Inter', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--avorio);
+            color: var(--abisso);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        a { color: var(--indaco); text-decoration: none; transition: all 0.2s ease; }
+        a:hover { color: var(--rosso); }
+
+        /* ===== TEXTURES (solo footer) ===== */
+        .texture-noise { position: relative; overflow: hidden; }
+        .texture-noise::after {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 600 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 0;
+        }
+        .content-layer { position: relative; z-index: 1; }
+
+        /* ===== SCROLL REVEAL ===== */
+        .reveal {
+            opacity: 0; transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+
+        /* ===== TYPOGRAPHY ===== */
+        h1, h2, h3 { font-family: var(--font-title); color: var(--abisso); }
+        .label {
+            font-family: var(--font-ui); font-size: 10px; font-weight: 600;
+            letter-spacing: 2px; text-transform: uppercase;
+            color: var(--cenere); margin-bottom: 20px; display: block;
+        }
+        .label--accent { color: var(--indaco); }
+        .label--light { color: rgba(255,255,255,0.5); }
+        .section-title { font-size: 28px; font-weight: 700; margin-bottom: 32px; line-height: 1.15; }
+        .section-title--flush { margin-bottom: 0; }
+        p { margin-bottom: 24px; font-size: 15px; color: #444; }
+        p.lead { font-size: 18px; color: var(--grafite); line-height: 1.5; font-weight: 400; }
+        .payoff {
+            font-family: var(--font-ui); font-size: 11px; font-weight: 600;
+            letter-spacing: 2px; text-transform: uppercase;
+            color: var(--indaco); display: inline-block;
+            margin-top: 12px; padding: 6px 14px;
+            background: rgba(92, 79, 232, 0.06); border-radius: 6px;
+        }
+        .subsection-title {
+            margin-top: 48px; font-size: 20px; margin-bottom: 16px;
+            padding-top: 24px; border-top: 1px solid var(--sabbia);
+        }
+
+        /* ===== UTILITIES ===== */
+        .mb-0 { margin-bottom: 0; }
+        .mt-32 { margin-top: 32px; }
+        .mt-40 { margin-top: 40px; }
+
+        /* ===== LAYOUT ===== */
+        .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+        .text-col { max-width: 640px; }
+        section { padding: 56px 0; }
+        @media (min-width: 768px) {
+            .container { padding: 0 40px; }
+            section { padding: 80px 0; }
+            .section-title { font-size: 38px; margin-bottom: 48px; }
+            p { font-size: 16px; }
+            p.lead { font-size: 20px; }
+            .label { font-size: 11px; }
+        }
+        .bg-white { background-color: var(--avorio-warm); }
+        .border-top { border-top: 1px solid var(--sabbia); }
+
+        /* ===== NAVIGATION ===== */
+        .navbar {
+            position: fixed; top: 0; left: 0; width: 100%;
+            background: transparent;
+            backdrop-filter: none; z-index: 1000;
+            border-bottom: 1px solid transparent;
+            transition: background 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .navbar.scrolled {
+            background: rgba(248, 245, 240, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--sabbia);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        .nav-inner {
+            display: flex; align-items: center;
+            max-width: 1080px; margin: 0 auto; padding: 0 24px;
+        }
+        .nav-brand {
+            font-family: var(--font-title); font-size: 18px; font-weight: 700;
+            color: var(--rosso); margin-right: 32px; flex-shrink: 0;
+            padding: 16px 0;
+        }
+        .nav-brand:hover { color: var(--indaco); }
+
+        /* Desktop nav list */
+        .nav-list {
+            display: none; list-style: none;
+            overflow-x: auto; white-space: nowrap;
+            padding: 16px 0; gap: 24px;
+            -ms-overflow-style: none; scrollbar-width: none;
+        }
+        .nav-list::-webkit-scrollbar { display: none; }
+        .nav-list li a {
+            font-family: var(--font-ui); font-size: 11px; font-weight: 600;
+            letter-spacing: 1px; color: var(--grafite); text-transform: uppercase;
+            transition: color 0.2s ease;
+        }
+        .nav-list li a:hover { color: var(--indaco); }
+        .nav-list li a.active { color: var(--indaco); }
+
+        /* Hamburger button */
+        .nav-hamburger {
+            display: flex; flex-direction: column; justify-content: center;
+            gap: 5px; background: none; border: none; cursor: pointer;
+            padding: 8px; margin-left: auto; z-index: 1001;
+        }
+        .nav-hamburger span {
+            display: block; width: 22px; height: 2px;
+            background: var(--grafite); border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        .nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+        .nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        /* Mobile menu overlay */
+        .nav-mobile {
+            display: none; position: fixed;
+            top: 0; left: 0; width: 100%; height: 100vh;
+            background: rgba(248, 245, 240, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 999;
+            flex-direction: column; justify-content: center; align-items: center;
+            gap: 28px; padding: 80px 24px;
+        }
+        .nav-mobile.open { display: flex; }
+        .nav-mobile a {
+            font-family: var(--font-ui); font-size: 14px; font-weight: 600;
+            letter-spacing: 2px; text-transform: uppercase;
+            color: var(--grafite); transition: color 0.2s ease;
+        }
+        .nav-mobile a:hover, .nav-mobile a.active { color: var(--indaco); }
+
+        @media (min-width: 768px) {
+            .nav-inner { padding: 0 40px; }
+            .nav-brand { padding: 20px 0; }
+            .nav-list { display: flex; padding: 20px 0; gap: 32px; }
+            .nav-hamburger { display: none; }
+            .nav-mobile { display: none !important; }
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            font-family: var(--font-ui); font-size: 12px; font-weight: 600;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            padding: 16px 28px; border-radius: 8px;
+            transition: all 0.3s ease; cursor: pointer;
+            width: 100%; text-align: center;
+        }
+        @media (min-width: 640px) { .btn { width: auto; padding: 18px 32px; } }
+        .btn-primary { background-color: var(--indaco); color: var(--bianco); }
+        .btn-primary:hover {
+            background-color: var(--rosso); color: var(--bianco);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(229, 57, 53, 0.25);
+        }
+        .btn-primary--inverted { background: var(--bianco); color: var(--abisso); }
+        .btn-primary--inverted:hover {
+            background: var(--avorio); color: var(--abisso);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        .btn-primary--red { background-color: var(--rosso); color: var(--bianco); }
+        .btn-primary--red:hover {
+            background-color: #C62828; color: var(--bianco);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(229, 57, 53, 0.3);
+        }
+        .btn-outline { border: 1px solid var(--grafite); color: var(--abisso); background: transparent; }
+        .btn-outline:hover { border-color: var(--indaco); color: var(--indaco); }
+        .btn-outline--light { border-color: rgba(255,255,255,0.4); color: var(--bianco); padding: 12px 24px; font-size: 11px; width: auto; }
+        .btn-outline--light:hover { border-color: rgba(255,255,255,0.7); color: var(--bianco); }
+        .btn-disabled { font-size: 10px; padding: 10px 16px; opacity: 0.5; pointer-events: none; width: auto; }
+
+        /* ===== HERO (LIGHT, COMPACT) ===== */
+        .hero {
+            display: flex; flex-direction: column; justify-content: flex-start;
+            background: var(--avorio);
+            padding-top: 120px; padding-bottom: 64px;
+        }
+        .hero-title {
+            font-size: 34px; font-weight: 700; line-height: 1.15;
+            color: var(--abisso); margin-bottom: 24px; max-width: 860px;
+        }
+        .hero-title .italic-accent {
+            font-style: italic; color: var(--rosso); font-weight: 400;
+            display: block; margin-top: 8px;
+        }
+        .hero-divider {
+            width: 60px; height: 3px;
+            background: var(--indaco);
+            margin: 32px 0; border-radius: 2px;
+        }
+        .hero-text { font-size: 17px; line-height: 1.7; color: var(--grafite); }
+        .hero-text--secondary { font-size: 15px; line-height: 1.7; color: var(--cenere); margin-top: 32px; }
+        @media (min-width: 768px) {
+            .hero-title { font-size: 56px; margin-bottom: 32px; }
+            .hero-title .italic-accent { display: inline; margin-top: 0; }
+            .hero-divider { margin: 40px 0; width: 80px; }
+        }
+        .hero-credentials {
+            display: flex; gap: 16px; flex-wrap: wrap;
+            margin-top: 40px; padding-top: 32px;
+            border-top: 1px solid var(--sabbia);
+        }
+        .cred-item {
+            font-family: var(--font-ui); font-size: 10px;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            color: var(--grafite);
+            background: rgba(92, 79, 232, 0.06);
+            padding: 6px 12px; border-radius: 4px;
+        }
+
+        /* ===== EDITORIAL GRID ===== */
+        .editorial-grid { display: grid; grid-template-columns: 1fr; gap: 40px; }
+        @media (min-width: 900px) { .editorial-grid { grid-template-columns: 1fr 300px; gap: 80px; } }
+
+        .editorial-grid-invert { display: grid; grid-template-columns: 1fr; gap: 40px; }
+        @media (min-width: 900px) { .editorial-grid-invert { grid-template-columns: 300px 1fr; gap: 80px; } }
+
+        /* ===== PULL QUOTES ===== */
+        .pull-quote {
+            font-family: var(--font-title); font-size: 20px; font-style: italic;
+            color: var(--rosso); line-height: 1.4;
+            padding-left: 20px; border-left: 2px solid var(--rosso); margin: 24px 0;
+        }
+        .pull-quote-box {
+            font-family: var(--font-title); font-size: 20px; font-style: italic;
+            color: var(--indaco); line-height: 1.4;
+            padding: 28px; margin: 24px 0;
+            background: rgba(92, 79, 232, 0.04);
+            border-radius: 12px;
+            border: 1px solid rgba(92, 79, 232, 0.1);
+        }
+        @media (max-width: 899px) {
+            .pull-quote, .pull-quote-box { display: none; }
+        }
+        @media (min-width: 768px) { .pull-quote { font-size: 24px; padding-left: 24px; border-left-width: 3px; } }
+        @media (min-width: 768px) { .pull-quote-box { font-size: 24px; } }
+
+        /* ===== COACHING TARGET CARD ===== */
+        .target-card {
+            background: var(--bianco); border-radius: 12px;
+            padding: 32px 24px; box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+            border-top: 4px solid var(--indaco);
+        }
+        .target-card h4 {
+            font-family: var(--font-ui); font-size: 13px;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            color: var(--abisso); margin-bottom: 20px;
+        }
+        .target-card ul { list-style: none; }
+        .target-card li {
+            padding-left: 20px; position: relative;
+            margin-bottom: 16px; font-size: 14px; color: var(--grafite);
+        }
+        .target-card li::before {
+            content: ''; position: absolute; left: 0; top: 8px;
+            width: 5px; height: 5px; border-radius: 50%; background: var(--rosso);
+        }
+
+        /* ===== PRESS/MEDIA CALLOUT ===== */
+        .press-callout-group {
+            margin-top: 32px; display: flex; flex-direction: column; gap: 16px;
+        }
+        .press-callout {
+            padding: 20px 24px;
+            background: rgba(92, 79, 232, 0.04);
+            border-radius: 10px; border-left: 3px solid var(--indaco);
+        }
+        .press-callout--warm {
+            background: rgba(229, 57, 53, 0.04);
+            border-left-color: var(--rosso);
+        }
+        .press-callout-label {
+            font-family: var(--font-ui); font-size: 10px; font-weight: 600;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            color: var(--cenere); margin-bottom: 10px; display: block;
+        }
+        .press-callout a {
+            display: block; font-family: var(--font-ui); font-size: 14px;
+            font-weight: 500; color: var(--indaco);
+            line-height: 1.5;
+        }
+        .press-callout--warm a { color: var(--rosso); }
+        .press-callout a:hover { color: var(--rosso); }
+        .press-callout--warm a:hover { color: var(--abisso); }
+        .press-callout .press-source {
+            font-size: 12px; color: var(--cenere); font-weight: 400;
+        }
+
+        /* ===== CREDENTIAL LINE ===== */
+        .credential-line {
+            font-family: var(--font-ui); font-size: 11px;
+            letter-spacing: 1px; color: var(--cenere); margin-top: 24px;
+        }
+        .credential-line a {
+            color: var(--indaco); font-family: var(--font-ui);
+            font-size: 11px; letter-spacing: 1px;
+        }
+
+        /* ===== PODCAST CARDS ===== */
+        .podcast-section { margin-bottom: 64px; }
+        .podcast-grid {
+            display: grid; grid-template-columns: 1fr; gap: 24px;
+        }
+        @media (min-width: 768px) {
+            .podcast-grid { grid-template-columns: repeat(3, 1fr); gap: 28px; }
+        }
+        .podcast-card {
+            background: var(--bianco);
+            border-radius: 12px; padding: 28px 24px;
+            border-top: 3px solid var(--indaco);
+            box-shadow: 0 2px 16px rgba(0,0,0,0.03);
+            display: flex; flex-direction: column;
+        }
+        .podcast-title {
+            font-family: var(--font-title);
+            font-size: 18px; font-weight: 600; font-style: italic;
+            color: var(--abisso); margin-bottom: 12px; line-height: 1.3;
+        }
+        .podcast-desc {
+            font-size: 14px; color: var(--grafite);
+            line-height: 1.6; margin-bottom: 16px; flex-grow: 1;
+        }
+        .podcast-links { display: flex; gap: 16px; }
+        .podcast-links a {
+            font-family: var(--font-ui); font-size: 11px; font-weight: 600;
+            letter-spacing: 1px; text-transform: uppercase; color: var(--indaco);
+        }
+        .podcast-links a:hover { color: var(--rosso); }
+
+        /* ===== TOOLS SECTION ===== */
+        .tools-section { border-top: 1px solid var(--sabbia); padding-top: 48px; }
+        .tools-lead { max-width: 640px; }
+
+        /* ===== STREAMING BADGES ===== */
+        .streaming-badges { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
+        .streaming-badge {
+            font-family: var(--font-ui); font-size: 11px; font-weight: 600;
+            letter-spacing: 1px; text-transform: uppercase;
+            color: rgba(255,255,255,0.9);
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 10px 18px; border-radius: 6px;
+            transition: all 0.3s ease;
+            display: inline-flex; align-items: center; gap: 8px;
+        }
+        .streaming-badge:hover {
+            color: var(--bianco);
+            background: rgba(255,255,255,0.18);
+            border-color: rgba(255,255,255,0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        }
+
+        /* ===== MUSIC SECTION — contained card ===== */
+        .music-section {
+            padding-top: 56px; padding-bottom: 56px;
+            background: var(--avorio);
+        }
+        .music-card {
+            background: linear-gradient(135deg, var(--rosso) 0%, var(--abisso) 100%);
+            color: var(--bianco);
+            border-radius: 16px;
+            padding: 48px 28px;
+            max-width: 800px;
+        }
+        .music-card .section-title { color: var(--bianco); }
+        .music-card .lead {
+            color: var(--bianco); font-family: var(--font-title);
+            font-size: 22px; margin-bottom: 24px;
+        }
+        .music-card p { color: rgba(255,255,255,0.9); }
+        @media (min-width: 768px) {
+            .music-section { padding-top: 80px; padding-bottom: 80px; }
+            .music-card { padding: 64px 48px; }
+            .music-card .lead { font-size: 24px; }
+        }
+
+        /* ===== CV TIMELINE ===== */
+        .cv-timeline {
+            padding-left: 24px; margin-left: 8px;
+        }
+        .cv-item { position: relative; margin-bottom: 48px; }
+        .cv-item:last-child { margin-bottom: 0; }
+        .cv-item::before {
+            content: ''; position: absolute; left: -31px; top: 4px;
+            width: 12px; height: 12px; border-radius: 50%;
+            background: var(--avorio); border: 2px solid var(--indaco);
+            transition: background 0.3s ease;
+        }
+        .cv-item:hover::before { background: var(--indaco); }
+        .cv-meta {
+            font-family: var(--font-ui); font-size: 10px; font-weight: 600;
+            letter-spacing: 1.5px; color: var(--indaco); margin-bottom: 6px;
+        }
+        .cv-role { font-size: 18px; margin-bottom: 4px; line-height: 1.25; }
+        .cv-org { font-size: 14px; font-weight: 500; color: var(--grafite); margin-bottom: 8px; }
+        @media (min-width: 768px) {
+            .cv-timeline { padding-left: 32px; }
+            .cv-item::before { left: -39px; top: 6px; }
+            .cv-meta { font-size: 11px; margin-bottom: 8px; }
+            .cv-role { font-size: 20px; }
+            .cv-org { font-size: 15px; margin-bottom: 12px; }
+        }
+
+        /* ===== CV ACCORDION ===== */
+        .cv-accordion {
+            border-top: 1px solid var(--sabbia);
+        }
+        .cv-accordion:first-child { border-top: none; }
+        .cv-accordion-header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 24px 0; cursor: pointer;
+            list-style: none; user-select: none;
+        }
+        .cv-accordion-header::-webkit-details-marker { display: none; }
+        .cv-accordion-header h3 {
+            font-family: var(--font-ui); font-size: 13px; font-weight: 600;
+            letter-spacing: 2px; text-transform: uppercase;
+            color: var(--indaco); margin-bottom: 0;
+        }
+        .cv-accordion-count {
+            font-family: var(--font-ui); font-size: 11px;
+            color: var(--cenere); letter-spacing: 1px;
+        }
+        .cv-accordion-header::after {
+            content: ''; display: inline-block;
+            width: 10px; height: 10px; margin-left: 16px;
+            border-right: 2px solid var(--cenere);
+            border-bottom: 2px solid var(--cenere);
+            transform: rotate(-45deg);
+            transition: transform 0.3s ease;
+        }
+        details[open] > .cv-accordion-header::after {
+            transform: rotate(45deg);
+        }
+        .cv-accordion-content {
+            padding-bottom: 32px;
+            border-left: 2px solid rgba(92, 79, 232, 0.15);
+        }
+        .cv-accordion-content--plain {
+            padding-bottom: 24px;
+            border-left: none;
+            padding-left: 0;
+        }
+
+        /* ===== SIDEBAR HEADING ===== */
+        .sidebar-heading { font-size: 20px; margin-bottom: 20px; }
+
+        /* ===== LISTS ===== */
+        .clean-list { list-style: none; }
+        .clean-list li {
+            padding: 16px 0; border-bottom: 1px solid var(--sabbia);
+            display: flex; flex-direction: column;
+        }
+        .clean-list li:last-child { border-bottom: none; }
+        .clean-list .title { font-weight: 500; color: var(--abisso); margin-bottom: 4px; font-size: 15px; line-height: 1.4; }
+        .clean-list .meta { font-size: 13px; color: var(--cenere); }
+        .pub-title { font-family: var(--font-title); font-style: italic; }
+        .clean-list-footer { border-bottom: none; padding-bottom: 0; }
+        .portfolio-link { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .competenze-header {
+            font-family: var(--font-ui); font-size: 10px; letter-spacing: 2px;
+            text-transform: uppercase; color: var(--cenere); margin-bottom: 12px;
+        }
+        .competenze-text { font-size: 14px; margin-bottom: 8px; }
+        .collab-text { font-size: 15px; color: var(--grafite); line-height: 1.6; }
+
+        /* ===== CV HEADER ===== */
+        .cv-header {
+            display: flex; justify-content: space-between; align-items: flex-end;
+            margin-bottom: 48px; flex-wrap: wrap; gap: 20px;
+        }
+
+        /* ===== BACK TO TOP ===== */
+        .back-to-top {
+            position: fixed; bottom: 32px; right: 32px;
+            width: 44px; height: 44px;
+            background: var(--abisso); color: var(--bianco);
+            border: none; border-radius: 50%; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 900;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+        .back-to-top.visible { opacity: 1; visibility: visible; }
+        .back-to-top:hover {
+            background: var(--indaco);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(92, 79, 232, 0.3);
+        }
+        .back-to-top svg { width: 18px; height: 18px; }
+
+        /* ===== FOOTER ===== */
+        .footer { background-color: var(--abisso); color: var(--bianco); padding: 80px 0 40px; }
+
+        .newsletter-section {
+            text-align: center; padding-bottom: 80px; margin-bottom: 0;
+        }
+        .newsletter-brand {
+            font-family: var(--font-title); font-size: 32px;
+            font-weight: 700; color: var(--rosso); margin-bottom: 8px;
+        }
+        .newsletter-tagline {
+            font-family: var(--font-title); font-size: 16px;
+            font-style: italic; color: rgba(255,255,255,0.5); margin-bottom: 28px;
+        }
+        .newsletter-desc {
+            color: rgba(255,255,255,0.85);
+            max-width: 520px; margin: 0 auto 36px auto;
+            font-size: 16px; line-height: 1.6;
+        }
+        @media (min-width: 768px) {
+            .footer { padding: 100px 0 60px; }
+            .newsletter-section { padding-bottom: 100px; }
+            .newsletter-brand { font-size: 42px; }
+            .newsletter-tagline { font-size: 18px; }
+        }
+
+        .footer-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1) 20%, rgba(255,255,255,0.1) 80%, transparent);
+            margin-bottom: 48px;
+        }
+        @media (min-width: 768px) { .footer-divider { margin-bottom: 56px; } }
+
+        .footer-bottom {
+            display: flex; flex-direction: column; gap: 32px;
+        }
+        @media (min-width: 768px) {
+            .footer-bottom { flex-direction: row; justify-content: space-between; align-items: flex-end; }
+        }
+        .footer-name {
+            font-family: var(--font-title); font-size: 24px;
+            color: var(--bianco); margin-bottom: 4px;
+        }
+        .footer-subtitle {
+            font-family: var(--font-ui); font-size: 11px;
+            letter-spacing: 1.5px; color: var(--cenere); margin-bottom: 16px;
+        }
+        .footer-email { color: var(--bianco); margin-right: 16px; font-size: 14px; }
+        .footer-phone { color: rgba(255,255,255,0.75); font-size: 14px; display: inline-block; margin-top: 8px; }
+        .f-links { display: flex; gap: 20px; flex-wrap: wrap; }
+        .f-links a {
+            font-family: var(--font-ui); font-size: 10px; font-weight: 500;
+            letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.7);
+        }
+        @media (min-width: 768px) { .f-links a { font-size: 11px; } .f-links { gap: 24px; } }
+        .f-links a:hover { color: var(--bianco); }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGAZIONE -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-inner">
+            <a href="#chi-sono" class="nav-brand">GG</a>
+            <ul class="nav-list">
+                <li><a href="#chi-sono">Chi sono</a></li>
+                <li><a href="#coaching">Coaching</a></li>
+                <li><a href="#ai-training">AI Training</a></li>
+                <li><a href="#come-lavoro">Come lavoro</a></li>
+                <li><a href="#giovanni-gut-ai">Giovanni Gut & AI</a></li>
+                <li><a href="#progetti">Parole & Strumenti</a></li>
+                <li><a href="#cv">CV</a></li>
+                <li><a href="#contatti">Contatti</a></li>
+            </ul>
+            <button class="nav-hamburger" id="navHamburger" aria-label="Apri menu di navigazione">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile menu overlay -->
+    <div class="nav-mobile" id="navMobile">
+        <a href="#chi-sono">Chi sono</a>
+        <a href="#coaching">Coaching</a>
+        <a href="#ai-training">AI Training</a>
+        <a href="#come-lavoro">Come lavoro</a>
+        <a href="#giovanni-gut-ai">Giovanni Gut & AI</a>
+        <a href="#progetti">Parole & Strumenti</a>
+        <a href="#cv">CV</a>
+        <a href="#contatti">Contatti</a>
+    </div>
+
+    <!-- 1. CHI SONO (HERO — light, compact) -->
+    <section id="chi-sono" class="hero">
+        <div class="container">
+            <span class="label label--accent reveal">Giovanni Gut</span>
+            <h1 class="hero-title reveal delay-1">Metto in dialogo mondi che di solito non si parlano. <span class="italic-accent">Lo faccio con le parole.</span></h1>
+
+            <div class="hero-divider reveal delay-2"></div>
+
+            <div class="text-col reveal delay-2">
+                <p class="hero-text">Quelle del coaching, della poesia, quelle che servono a capirsi quando il cambiamento fa paura. E lo faccio con l'intelligenza artificiale, che è diventata il mio interlocutore più esigente: per spiegarle le mie parole, ho dovuto capirle meglio io stesso. Guardo l'AI come guardo le persone: cerco i punti di forza e ci lavoro.</p>
+                <p class="hero-text">Il mio sguardo viene da lì: dal lavoro del poeta che ascolta prima di scrivere, del coach che attende prima di chiedere, e di chi con l'AI ci lavora davvero — non per delegare il pensiero, ma per espanderlo.</p>
+                <span class="payoff">Not generated, co-created.</span>
+
+                <p class="hero-text--secondary">Professional Coach ICF-AICP, AI Trainer, PhD in Economia del Lavoro. Venticinque anni passati tra reti internazionali, terzo settore, scuole dove nessuno doveva restare indietro. Il filo è sempre lo stesso: porto le parole, trovo nell'altro una voce inaspettata, ci lavoro finché diventa qualcosa che prima non c'era.</p>
+
+                <div class="mt-32">
+                    <!-- TODO: sostituire # con link Google Calendar -->
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Prenota una call con me</a>
+                </div>
+            </div>
+
+            <div class="hero-credentials reveal delay-3">
+                <div class="cred-item">Coach ICF-AICP</div>
+                <div class="cred-item">AI Trainer</div>
+                <div class="cred-item">PhD Economia del Lavoro</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. COACHING -->
+    <section id="coaching" class="bg-white">
+        <div class="container">
+            <span class="label reveal">Sviluppo Personale</span>
+            <h2 class="section-title reveal">Coaching</h2>
+            <div class="editorial-grid">
+                <div class="text-col reveal delay-1">
+                    <p class="lead">Parto da quello che c'è, non da quello che manca. Le persone che ho davanti hanno già le risorse di cui hanno bisogno. Il mio lavoro è creare le condizioni perché emergano.</p>
+                    <p>Attraverso domande che aprono, silenzi che lasciano spazio, e una relazione dove ci si sente accolti prima ancora di essere capiti. Il mio sguardo viene dalla poesia quanto dal lavoro sul campo — e non li separo.</p>
+                    <p>Vedo oltre le parole, ascolto quello che non viene detto, aspetto che l'altro sveli se stesso nei suoi tempi. Non è uno sguardo che pretende di sapere. È uno sguardo che sa attendere.</p>
+                    <p>Poi, quando la fiducia c'è, si lavora. E qualche volta si ride anche, che non guasta.</p>
+                    <p class="credential-line">PROFESSIONAL COACH ICF-AICP</p>
+
+                    <div class="press-callout-group">
+                        <div class="press-callout">
+                            <span class="press-callout-label">Il mio sguardo nel coaching</span>
+                            <a href="https://www.incoaching.it/tra-coaching-e-poesia/" target="_blank" rel="noopener noreferrer">Tra coaching e poesia <span class="press-source">— incoaching.it</span></a>
+                        </div>
+                        <div class="press-callout press-callout--warm">
+                            <span class="press-callout-label">Dicono del mio lavoro</span>
+                            <a href="https://www.vita.it/sostituire-il-dialogo-alla-punizione-in-alcune-scuole-e-realta/" target="_blank" rel="noopener noreferrer">Sostituire il dialogo alla punizione <span class="press-source">— Vita.it</span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal delay-2">
+                    <div class="target-card">
+                        <h4>Per chi è</h4>
+                        <ul>
+                            <li>Persone che attraversano una transizione professionale o di vita.</li>
+                            <li>Manager chiamati a gestire team in contesti di forte incertezza.</li>
+                            <li>Organizzazioni che devono ricostruire fiducia e senso dopo una crisi.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. AI TRAINING — inverted grid -->
+    <section id="ai-training">
+        <div class="container">
+            <span class="label reveal">Innovazione Formativa</span>
+            <h2 class="section-title reveal">AI Training</h2>
+            <div class="editorial-grid-invert">
+                <div class="reveal delay-1">
+                    <div class="pull-quote-box">L'AI non mi sostituisce: mi costringe a essere più chiaro, più preciso, più presente.</div>
+                </div>
+                <div class="text-col reveal delay-2">
+                    <p class="lead">L'intelligenza artificiale è diventata il mio interlocutore quotidiano. Non un assistente a cui delegare, ma un altro con cui pensare. Questo lavoro mi espande come professionista e come persona — non mi sostituisce, mi costringe a essere più chiaro, più preciso, più presente.</p>
+                    <p>Con l'AI faccio quello che faccio nel coaching: non scelgo in base ai benchmark, cerco i punti di forza di ogni strumento e li esalto. Ho costruito personalità diverse per Claude, Gemini, ChatGPT — ognuna frutto di mesi di iterazione continua, ognuna secondo le caratteristiche proprie di quello strumento. Il metodo è lo stesso: ascoltare l'altro per quello che è, facendo emergere il loro potenziale.</p>
+                    <p>I risultati si vedono. Con l'AI ho scritto un album — <em>What Echoes Back</em> — trasformando le mie poesie in musica. Ho costruito applicazioni web, strumenti per il coaching, un toolkit per il pensiero critico. Ho anche costruito un sistema di career development assistito da AI — lo chiamo Demerzel. Il primo caso studio sono io.</p>
+                    <span class="payoff">Not generated, co-created.</span>
+                    <p class="mt-32">È da qui che nasce la mia formazione: da una pratica che attraversa tutto quello che faccio. In aula porto gli strumenti, ma soprattutto porto un approccio: si impara lavorandoci, partendo da dove si è, non da dove si dovrebbe essere.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. COME LAVORO — con toggle per sotto-sezioni -->
+    <section id="come-lavoro" class="bg-white">
+        <div class="container">
+            <span class="label reveal">Metodo</span>
+            <h2 class="section-title reveal">Come lavoro</h2>
+            <div class="editorial-grid">
+                <div class="text-col reveal delay-1">
+                    <p class="lead">Il mio modo di lavorare è sempre stato lo stesso: arrivo, ascolto, costruisco fiducia. Poi metto insieme strumenti da mondi diversi — coaching, ricerca, intelligenza artificiale, parola — per affrontare problemi che nessuno di quei mondi affronta da solo.</p>
+                    <p>Lo faccio da venticinque anni, in contesti ogni volta diversi. Il filo è sempre lo stesso: nessuno resta indietro.</p>
+
+                    <details class="cv-accordion">
+                        <summary class="cv-accordion-header">
+                            <h3>Nella scuola</h3>
+                        </summary>
+                        <div class="cv-accordion-content cv-accordion-content--plain">
+                            <p>Ho diretto per due anni il Centro di Formazione Professionale "San Giuseppe" di Verona, nella rete "Scuole per crescere". Mi sono trovato davanti problemi comportamentali importanti, diventati più urgenti della didattica stessa. Ho scelto di non rispondere con l'espulsione.</p>
+                            <p>Con l'Opera Don Calabria e Medici per la Pace abbiamo costruito un rapporto profondo, che ha portato a interventi educativi in tre classi e a un sistema di attività riparative al posto delle sospensioni tradizionali: chi veniva sospeso non restava a casa, ma era coinvolto in percorsi con la Caritas e con i servizi del territorio. In parallelo ho attivato una formazione per i docenti, perché anche chi è in prima linea ogni giorno ha bisogno di trasformare le emozioni che certi comportamenti provocano in capacità educativa.</p>
+                            <p>Il modello è stato raccontato da <a href="https://www.vita.it/sostituire-il-dialogo-alla-punizione-in-alcune-scuole-e-realta/" target="_blank" rel="noopener noreferrer">Vita.it</a> come una delle due esperienze italiane di giustizia riparativa nelle scuole. In due anni, nessuno studente ha abbandonato il percorso.</p>
+                            <p class="mb-0">Ho anche gestito la transizione di due scuole paritarie appena acquisite da una nuova proprietà, entrambe in condizioni difficili. Sono entrato senza esperienza nel settore scolastico e ho lavorato sulla fiducia — personale, famiglie, territorio. Nessuno ha perso il posto di lavoro.</p>
+                        </div>
+                    </details>
+
+                    <details class="cv-accordion">
+                        <summary class="cv-accordion-header">
+                            <h3>Nel terzo settore</h3>
+                        </summary>
+                        <div class="cv-accordion-content cv-accordion-content--plain">
+                            <p>Ho guidato per 17 anni il rilancio della presenza giovani in MCL, partendo da un nucleo ristretto fino a costruire una rete nazionale, con decine di dirigenti formati e inseriti in ruoli decisionali a ogni livello. Ho portato i giovani da una funzione decorativa a una presenza reale negli organi di governo.</p>
+                            <p class="mb-0">Ho progettato e realizzato 15 edizioni di alta formazione — Summer School e Winter School — in partnership con il Centro di Ateneo per la dottrina sociale della Chiesa dell'Università Cattolica, e coordinato 3 conferenze internazionali sui giovani lavoratori europei con EZA a Colonia. A Milano, ho preso la gestione della sede regionale in condizioni economiche critiche e l'ho lasciata otto anni dopo in salute e con un'attività strutturata.</p>
+                        </div>
+                    </details>
+                </div>
+                <div class="reveal delay-2">
+                    <div class="pull-quote">Nessuno resta indietro. È il filo che lega venticinque anni di lavoro in contesti sempre diversi.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. GIOVANNI GUT & AI — contained dark card -->
+    <section id="giovanni-gut-ai" class="music-section">
+        <div class="container">
+            <div class="music-card">
+                <span class="label label--light reveal">Musica & Poesia</span>
+                <h2 class="section-title reveal">Giovanni Gut & AI</h2>
+                <div class="text-col reveal delay-1">
+                    <p class="lead">Sono un poeta. Un giorno ho affidato i miei versi a un'intelligenza artificiale. Volevo uno strumento, ho trovato una voce.</p>
+                    <p>Per spiegarle le mie parole, ho dovuto capirle meglio io stesso. Quello che era iniziato come un laboratorio — The Neural Gut Project — è diventato qualcosa di diverso: non più un esperimento, ma un modo nuovo di fare musica. Canzoni scritte da me e musicate dall'AI, poesie trasformate in canzoni, e un brano dove il testo l'ha scritto l'AI, guidata da me. Otto tracce, un album — <em>What Echoes Back</em> (2026), firmato Giovanni Gut & AI.</p>
+                    <p>Non è un progetto tecnico. È quello che succede quando smetti di chiedere a una macchina di eseguire e cominci a lavorarci insieme.</p>
+
+                    <div class="mt-40">
+                        <a href="https://giovannigut.github.io/giovannigutai" target="_blank" rel="noopener noreferrer" class="btn btn-primary--inverted">Ascolta e scopri il processo</a>
+
+                        <div class="streaming-badges">
+                            <a href="https://open.spotify.com/intl-it/artist/3VxE8q0kaMzY0BAZAMluey?si=Ccv2TZcKRd2zo-oWH-Plzw" target="_blank" rel="noopener noreferrer" class="streaming-badge">Spotify</a>
+                            <a href="https://music.apple.com/it/artist/giovanni-gut-ai/1879868247" target="_blank" rel="noopener noreferrer" class="streaming-badge">Apple Music</a>
+                            <a href="https://music.amazon.it/artists/B0GP8TVLW6/giovanni-gut-ai?marketplaceId=APJ6JRA9NG5V4&musicTerritory=IT&ref=dm_sh_xwPKU1flpckwatMqPs1lY2SPy" target="_blank" rel="noopener noreferrer" class="streaming-badge">Amazon Music</a>
+                            <a href="https://youtube.com/@giovannigutai?si=1oTDJMX0kGkeGjpp" target="_blank" rel="noopener noreferrer" class="streaming-badge">YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. PAROLE E STRUMENTI -->
+    <section id="progetti">
+        <div class="container">
+            <span class="label reveal">Produzioni</span>
+            <h2 class="section-title reveal">Parole e strumenti</h2>
+
+            <!-- Podcast -->
+            <div class="reveal delay-1 podcast-section">
+                <h3 class="sidebar-heading">Podcast</h3>
+                <div class="podcast-grid">
+                    <div class="podcast-card">
+                        <div class="podcast-title">Parole in bottega</div>
+                        <p class="podcast-desc">Le parole che accendono la vita — cercate nella poesia, nei racconti, nelle canzoni. Come nelle botteghe di una volta, ci si trova per lavorare, discutere e dare spazio a chi è inciampato sulle parole che aggiungono qualcosa alla nostra vita.</p>
+                        <div class="podcast-links">
+                            <a href="https://open.spotify.com/show/5oIBZuUgDROW3xpfN8XovM?si=27e0c127d4fa4568" target="_blank" rel="noopener noreferrer">Spotify →</a>
+                            <a href="https://podcasts.apple.com/it/podcast/parole-in-bottega/id1695685528" target="_blank" rel="noopener noreferrer">Apple Podcast →</a>
+                        </div>
+                    </div>
+                    <div class="podcast-card">
+                        <div class="podcast-title">Alle volte basta un verso</div>
+                        <p class="podcast-desc">Poeti di oggi e di ieri, letti per strada o dove ci trova l'ispirazione del momento. Perché la poesia appartiene alla vita e, come tutte le cose belle, è un incontro inaspettato.</p>
+                        <div class="podcast-links">
+                            <a href="https://open.spotify.com/show/21i9AFOQd02V24puaQ0JMB?si=b110a5158b5444e8" target="_blank" rel="noopener noreferrer">Spotify →</a>
+                            <a href="https://podcasts.apple.com/it/podcast/alle-volte-basta-un-verso-poesie-lungo-la-strada/id1510140369" target="_blank" rel="noopener noreferrer">Apple Podcast →</a>
+                        </div>
+                    </div>
+                    <div class="podcast-card">
+                        <div class="podcast-title">Non ci resta che raccontarle</div>
+                        <p class="podcast-desc">Libri, serie tv, manga, film, canzoni — ogni due settimane, con leggerezza e col fascino della scoperta. Con Giò, Ambro e Ale. Una produzione di Parole in Bottega.</p>
+                        <div class="podcast-links">
+                            <a href="https://open.spotify.com/show/7qin8XzYw3JNIqLEGfhT73?si=832fa15cd8d8433c" target="_blank" rel="noopener noreferrer">Spotify →</a>
+                            <a href="https://podcasts.apple.com/it/podcast/non-ci-resta-che-raccontarle/id1740529342" target="_blank" rel="noopener noreferrer">Apple Podcast →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Strumenti / GitHub -->
+            <div class="reveal delay-2 tools-section">
+                <h3 class="sidebar-heading">Strumenti</h3>
+                <p class="lead tools-lead">Costruisco strumenti con l'AI. Applicazioni web, toolkit, calcolatori — cose che nascono da un bisogno concreto e che funzionano. Ogni progetto è un altro modo di mettere in dialogo tecnologia e lavoro quotidiano.</p>
+                <a href="https://github.com/GiovanniGut" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Tutti i progetti su GitHub →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. CV -->
+    <section id="cv" class="bg-white">
+        <div class="container">
+            <div class="reveal cv-header">
+                <div>
+                    <span class="label">Curriculum</span>
+                    <h2 class="section-title section-title--flush">Esperienze Professionali</h2>
+                </div>
+                <a href="https://drive.google.com/file/d/1YM36Dhc0_UbtBosZPS7rjhy7zfaPsHx1/view?usp=share_link" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Scarica PDF</a>
+            </div>
+            <div class="text-col reveal delay-1">
+
+                <details class="cv-accordion">
+                    <summary class="cv-accordion-header">
+                        <h3>Esperienze principali</h3>
+                        <span class="cv-accordion-count">7 ruoli</span>
+                    </summary>
+                    <div class="cv-accordion-content cv-timeline">
+                        <div class="cv-item">
+                            <div class="cv-meta">2026 – PRESENTE</div>
+                            <div class="cv-role">Consulente di ricerca</div>
+                            <div class="cv-org">Fondazione Prof. Ezio Tarantelli</div>
+                            <p class="mb-0">Ricerca su giovani e mercato del lavoro somministrato, e previdenza per i lavoratori atipici.</p>
+                        </div>
+                        <div class="cv-item">
+                            <div class="cv-meta">2025 – PRESENTE</div>
+                            <div class="cv-role">AI Trainer</div>
+                            <div class="cv-org">Freelance</div>
+                            <p class="mb-0">Progettazione e conduzione di corsi in aula sull'intelligenza artificiale generativa: strumenti pratici, metodologie e integrazione nei processi di lavoro. Tra i clienti: Yellowtech.</p>
+                        </div>
+                        <div class="cv-item">
+                            <div class="cv-meta">2025 – PRESENTE</div>
+                            <div class="cv-role">Professional Coach ICF-AICP</div>
+                            <div class="cv-org">Freelance</div>
+                            <p class="mb-0">Lavoro con persone e organizzazioni che attraversano un cambiamento e cercano chiarezza su dove andare. Porto nel coaching oltre vent'anni di esperienza concreta nelle transizioni — direzione di strutture, formazione, gestione di crisi.</p>
+                        </div>
+                        <div class="cv-item">
+                            <div class="cv-meta">2024 – PRESENTE</div>
+                            <div class="cv-role">Giovanni Gut & AI</div>
+                            <div class="cv-org">Progetto indipendente</div>
+                            <p class="mb-0">Progetto che combina poesia, intelligenza artificiale e sound design per trasformare la parola scritta in musica. Album "What Echoes Back" (2026). Su Spotify, Apple Music, Amazon Music.</p>
+                        </div>
+                        <div class="cv-item">
+                            <div class="cv-meta">2020 – PRESENTE</div>
+                            <div class="cv-role">Podcaster Producer & Speaker</div>
+                            <div class="cv-org">Indipendente</div>
+                            <p class="mb-0">Producer e conduttore di 3 podcast: "Alle volte basta un verso", "Parole in bottega", "Non ci resta che raccontarle". Oltre 50 episodi pubblicati con gestione completa della produzione audio, ideazione contenuti e storytelling per format dedicati a letteratura, cultura e crescita personale.</p>
+                        </div>
+                        <div class="cv-item">
+                            <div class="cv-meta">2022 – 2024</div>
+                            <div class="cv-role">Direttore di strutture scolastiche</div>
+                            <div class="cv-org">Fondazione San Giovanni Paolo II</div>
+                            <p class="mb-0">Direttore generale della struttura scolastica paritaria "Istituto San Giuseppe" di Verona. Preside del "Centro di Formazione Professionale ai Servizi di Impresa" dell'Istituto San Giuseppe. Consulenza per la gestione della scuola paritaria "Maria Consolatrice" di Milano.</p>
+                        </div>
+                        <div class="cv-item">
+                            <div class="cv-meta">2005 – 2022</div>
+                            <div class="cv-role">Vicepresidente Generale</div>
+                            <div class="cv-org">Movimento Cristiano Lavoratori (MCL)</div>
+                            <p class="mb-0">Responsabile delle relazioni istituzionali a livello territoriale, nazionale e internazionale, inclusi i rapporti con le istituzioni ecclesiastiche. Partnership con l'Università Cattolica del Sacro Cuore: 15 edizioni di alta formazione (Summer e Winter School) nelle sedi di Milano e Brescia. Costruzione e gestione della rete giovanile nazionale: formazione di una nuova classe dirigente e inserimento nei ruoli decisionali dell'organizzazione a ogni livello.</p>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="cv-accordion">
+                    <summary class="cv-accordion-header">
+                        <h3>Principali esperienze in ambito formativo</h3>
+                        <span class="cv-accordion-count">5 ruoli</span>
+                    </summary>
+                    <div class="cv-accordion-content cv-timeline">
+                        <div class="cv-item">
+                            <div class="cv-meta">2012 – 2024</div>
+                            <div class="cv-role">Servizio Civile Universale</div>
+                            <p class="mb-0">Formatore dei volontari del Servizio Civile Universale in Italia e all'estero (MCL, 2012-2021). Coordinatore operativo e amministrativo (OLP) della sede di Milano (MCL, 2012-2022). Formatore per il progetto "Cooperazione e sviluppo sostenibile in Nepal" (Children of the Sea, 2024).</p>
+                        </div>
+                        <div class="cv-item">
+                            <div class="cv-meta">2012 – 2019</div>
+                            <div class="cv-role">Pronto Lavoro MCL</div>
+                            <div class="cv-org">Roma</div>
+                            <p class="mb-0">Ideatore e responsabile di questo progetto a carattere nazionale per la formazione di base sul mondo del lavoro, attraverso sportelli territoriali nelle sedi MCL.</p>
+                        </div>
+                        <div class="cv-item">
+                            <div class="cv-meta">2009 – 2019</div>
+                            <div class="cv-role">Formatore e co-organizzatore</div>
+                            <div class="cv-org">MCL e Centro di Ateneo per la dottrina sociale della Chiesa, Università Cattolica — Milano e Brescia</div>
+                            <p class="mb-0">Co-organizzatore dei percorsi formativi con il Centro di Ateneo per la dottrina sociale della Chiesa dell'Università Cattolica.</p>
+                        </div>
+                        <div class="cv-item">
+                            <div class="cv-meta">2007 – 2011</div>
+                            <div class="cv-role">Coordinatore conferenze internazionali</div>
+                            <div class="cv-org">EZA (Europäisches Zentrum für Arbeitnehmerfragen) — Colonia</div>
+                            <p class="mb-0">Organizzatore e coordinatore di conferenze internazionali sui giovani lavoratori europei: "Young workers participation" (Varsavia, 2011), "Nada sobre a Juventude sem os Jovens" (Oporto, 2009), "Young Employees in Europe: THAT'S... how we want to work" (Bruxelles, 2007).</p>
+                        </div>
+                        <div class="cv-item">
+                            <div class="cv-meta">2002 – 2003</div>
+                            <div class="cv-role">Collaboratore cattedra di Diritto Canonico</div>
+                            <div class="cv-org">Università Cattolica del Sacro Cuore — Milano</div>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="cv-accordion">
+                    <summary class="cv-accordion-header">
+                        <h3>Principali esperienze nelle relazioni istituzionali</h3>
+                        <span class="cv-accordion-count">4 ruoli</span>
+                    </summary>
+                    <div class="cv-accordion-content cv-timeline">
+                        <div class="cv-item">
+                            <div class="cv-meta">2019 – 2023</div>
+                            <div class="cv-role">Membro dell'assemblea generale</div>
+                            <div class="cv-org">European Union Christian Democratic Workers — Bruxelles</div>
+                            <p class="mb-0">Network dei sindacati europei di ispirazione cristiana.</p>
+                        </div>
+                        <div class="cv-item">
+                            <div class="cv-meta">2015 – 2019</div>
+                            <div class="cv-role">Membro del CdA</div>
+                            <div class="cv-org">CEFA Onlus — Bologna</div>
+                            <p class="mb-0">Realizzazione della campagna "Dal Seme al Cibo" a sostegno dell'autosufficienza alimentare di migliaia di famiglie in Africa.</p>
+                        </div>
+                        <div class="cv-item">
+                            <div class="cv-meta">2007 – 2011</div>
+                            <div class="cv-role">Membro del coordinamento giovanile</div>
+                            <div class="cv-org">EZA — Colonia</div>
+                            <p class="mb-0">Coordinatore di progetti internazionali tra gruppi giovanili di associazioni europee del mondo del lavoro.</p>
+                        </div>
+                        <div class="cv-item">
+                            <div class="cv-meta">1999</div>
+                            <div class="cv-role">Advisor</div>
+                            <div class="cv-org">Permanent Observer Mission of the Holy See to the United Nations — New York</div>
+                            <p class="mb-0">In qualità di Advisor ho seguito per la Santa Sede i lavori dell'Assemblea generale e le commissioni sul diritto internazionale e lo sviluppo sostenibile delle Nazioni Unite.</p>
+                        </div>
+                    </div>
+                </details>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. FORMAZIONE -->
+    <section class="border-top">
+        <div class="container">
+            <span class="label reveal">Percorso accademico</span>
+            <h2 class="section-title reveal">Formazione</h2>
+            <div class="text-col reveal delay-1">
+                <ul class="clean-list">
+                    <li><span class="title">Professional Coaching Program (ICF e AICP)</span><span class="meta">INCOACHING S.r.l. | 2025</span></li>
+                    <li><span class="title">PhD Economia del Lavoro</span><span class="meta">Modena e Reggio Emilia / Fondazione Marco Biagi | 2010</span></li>
+                    <li><span class="title">Master HR Management (II livello)</span><span class="meta">Ernst & Young Business School | 2004</span></li>
+                    <li><span class="title">Laurea in Scienze Politiche</span><span class="meta">Università di Firenze | 2001</span></li>
+                </ul>
+
+                <details class="cv-accordion">
+                    <summary class="cv-accordion-header">
+                        <h3>Certificazioni e attestati</h3>
+                    </summary>
+                    <div class="cv-accordion-content cv-accordion-content--plain">
+                        <ul class="clean-list">
+                            <li><span class="title">Google AI Essentials</span><span class="meta">Google | 2025</span></li>
+                            <!-- Aggiungi qui altre certificazioni -->
+                        </ul>
+                        <div class="mt-32">
+                            <a href="https://linkedin.com/in/giovannigut" target="_blank" rel="noopener noreferrer" class="portfolio-link">Vedi certificazioni su LinkedIn →</a>
+                        </div>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. PUBBLICAZIONI -->
+    <section class="bg-white">
+        <div class="container">
+            <span class="label reveal">Scrittura</span>
+            <h2 class="section-title reveal">Pubblicazioni</h2>
+            <div class="editorial-grid">
+                <div class="reveal delay-1">
+                    <h3 class="sidebar-heading">Libri</h3>
+                    <ul class="clean-list">
+                        <li><span class="title pub-title">La musa che smarrì il poeta</span><span class="meta">NOLICA Edizioni, Forlì, 2023</span></li>
+                        <li><span class="title pub-title">Di parole e di sangue</span><span class="meta">Echos Edizioni, Giaveno (TO), 2017</span></li>
+                        <li><span class="title pub-title">Senza mai fermarsi</span><span class="meta">Società Editrice Fiorentina, Firenze, 2010</span></li>
+                    </ul>
+                    <h3 class="sidebar-heading mt-40">In antologia</h3>
+                    <ul class="clean-list">
+                        <li><span class="title pub-title">Il Fiore</span><span class="meta">in "La sicurezza è essere amati", goWare, 2020</span></li>
+                        <li><span class="title pub-title">La Croce</span><span class="meta">in "Abbi cura di me", goWare, 2020</span></li>
+                    </ul>
+                </div>
+                <div class="reveal delay-2">
+                    <h3 class="sidebar-heading">Collaborazioni editoriali</h3>
+                    <p class="collab-text">L'Osservatore Romano, Avvenire, Vita, Il Sussidiario, Bollettino Adapt, Conquiste del Lavoro, Tempi, Traguardi Sociali</p>
+                    <a href="https://giovannigut.wordpress.com" target="_blank" rel="noopener noreferrer" class="portfolio-link">Portfolio articoli completo →</a>
+
+                    <div class="mt-40">
+                        <h3 class="sidebar-heading">Competenze</h3>
+                        <p class="competenze-text"><strong>AI e digitale:</strong> AI generativa (testo, immagini, audio, video, musica, sviluppo web app); Google Workspace; Notion; Canva; WordPress; Podcasting (hardware e software).</p>
+                        <p class="competenze-text"><strong>Lingue:</strong> Inglese (Ottima), Francese (Buona), Spagnolo (Elementare).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contatti" class="footer texture-noise">
+        <div class="container content-layer">
+
+            <!-- Newsletter -->
+            <div class="newsletter-section reveal">
+                <span class="label label--light">La mia Newsletter</span>
+                <div class="newsletter-brand">Affinità impreviste</div>
+                <div class="newsletter-tagline">Coaching, AI, poesia: in relazione. Casi reali, connessioni inaspettate.</div>
+                <p class="newsletter-desc">Cosa succede quando l'AI diventa un interlocutore e non solo uno strumento. Come si costruisce qualcosa di nuovo senza una mappa. E perché vale la pena raccontarlo.</p>
+                <a href="https://substack.com/@giovannigut" target="_blank" rel="noopener noreferrer" class="btn btn-primary--red">Iscriviti su Substack</a>
+            </div>
+
+            <div class="footer-divider"></div>
+
+            <div class="footer-bottom reveal delay-1">
+                <div>
+                    <h3 class="footer-name">Giovanni Gut</h3>
+                    <div class="footer-subtitle">COACH ICF-AICP · TRAINER AI · POETA</div>
+                    <a href="mailto:giovannigut@gmail.com" class="footer-email">giovannigut@gmail.com</a>
+                    <span class="footer-phone">+39 349 290 3663</span>
+                    <div class="mt-32">
+                        <!-- TODO: sostituire # con link Google Calendar -->
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-outline--light">Prenota una call</a>
+                    </div>
+                </div>
+                <div class="f-links">
+                    <a href="https://linkedin.com/in/giovannigut" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="https://github.com/GiovanniGut" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://substack.com/@giovannigut" target="_blank" rel="noopener noreferrer">Substack</a>
+                    <a href="https://giovannigut.github.io/giovannigutai" target="_blank" rel="noopener noreferrer">Musica</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top -->
+    <button class="back-to-top" id="backToTop" aria-label="Torna in cima">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
+    <script>
+        // Navbar scroll behavior: transparent → solid + back to top
+        const navbar = document.getElementById('navbar');
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            if (window.scrollY > 600) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Hamburger menu
+        const hamburger = document.getElementById('navHamburger');
+        const mobileMenu = document.getElementById('navMobile');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            mobileMenu.classList.toggle('open');
+            document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+        });
+        // Close mobile menu on link click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('open');
+                mobileMenu.classList.remove('open');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('.nav-list a, .nav-brand, .nav-mobile a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId.startsWith('#')) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const headerOffset = 70;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.scrollY - headerOffset;
+                        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                    }
+                }
+            });
+        });
+
+        // Scroll reveal
+        document.addEventListener("DOMContentLoaded", function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) { entry.target.classList.add('active'); observer.unobserve(entry.target); }
+                });
+            }, { threshold: 0.15 });
+            document.querySelectorAll('.reveal').forEach((el) => { observer.observe(el); });
+
+            // Active nav highlighting
+            const sections = document.querySelectorAll('section[id], footer[id]');
+            const navLinks = document.querySelectorAll('.nav-list a');
+            const mobileNavLinks = document.querySelectorAll('.nav-mobile a');
+            const navObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.id;
+                        navLinks.forEach(link => link.classList.remove('active'));
+                        mobileNavLinks.forEach(link => link.classList.remove('active'));
+                        const activeDesktop = document.querySelector(`.nav-list a[href="#${id}"]`);
+                        const activeMobile = document.querySelector(`.nav-mobile a[href="#${id}"]`);
+                        if (activeDesktop) activeDesktop.classList.add('active');
+                        if (activeMobile) activeMobile.classList.add('active');
+                    }
+                });
+            }, { rootMargin: '-20% 0px -70% 0px' });
+            sections.forEach(section => navObserver.observe(section));
+        });
+    </script>
+</body>
+</html>
