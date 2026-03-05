@@ -598,19 +598,19 @@
         }
         @media (max-width: 480px) {
             .jm-label {
-                position: relative !important; width: 100% !important;
-                top: auto !important; left: auto !important; right: auto !important;
-                text-align: left !important; padding-left: 24px; padding-bottom: 8px;
+                width: 60% !important;
+                right: 0 !important; left: auto !important;
+                text-align: left !important;
             }
-            .jm-label-top { justify-content: flex-start !important; }
-            .jm-map svg { display: none; }
-            .jm-hitbox { display: none; }
-            .jm-label::before {
-                content: ''; position: absolute; left: 0; top: 6px;
-                width: 10px; height: 10px; border-radius: 50%;
-                border: 1.5px solid var(--cenere);
-            }
-            .jm-shift { max-height: 60px; opacity: 0.6; }
+            .jm-label--left { text-align: left !important; }
+            .jm-label--left .jm-label-top { justify-content: flex-start !important; }
+            .jm-title { font-size: 14px; }
+            .jm-sub { font-size: 10.5px; }
+            .jm-shift { font-size: 12px; }
+        }
+        .jm-hint {
+            font-family: var(--font-ui); font-size: 11px; font-style: italic;
+            color: var(--cenere); margin-bottom: 32px; opacity: 0.6;
         }
 
         /* ===== SIDEBAR HEADING ===== */
@@ -1317,7 +1317,11 @@
                 let svgEl = null, pathAnim = null;
 
                 function calcPositions(w) {
-                    const cx = w * 0.5, amp = w * 0.12, rowH = 88, startY = 30;
+                    const mobile = w < 480;
+                    const cx = mobile ? w * 0.18 : w * 0.5;
+                    const amp = mobile ? w * 0.06 : w * 0.12;
+                    const rowH = mobile ? 105 : 115;
+                    const startY = 30;
                     return jmStops.map((_, i) => {
                         const ph = i * 0.85;
                         return {
@@ -1388,6 +1392,14 @@
                     intro.className = 'jm-intro';
                     intro.textContent = 'Ogni percorso ha i suoi punti di svolta. Trovarli è il primo passo per capire dove stai andando.';
                     container.appendChild(intro);
+
+                    // Hint
+                    const hint = document.createElement('p');
+                    hint.className = 'jm-hint';
+                    hint.textContent = w < 480
+                        ? 'Tocca una tappa per scoprire i punti di svolta ↗'
+                        : 'Passa sopra le tappe per scoprire i punti di svolta ↗';
+                    container.appendChild(hint);
 
                     // Map wrapper
                     const mapDiv = document.createElement('div');
@@ -1542,6 +1554,31 @@
                                 labels.forEach(l => l.classList.add('visible'));
                             });
                         });
+                        // Pulse ring on first dot after path animation
+                        setTimeout(() => {
+                            const p0 = positions[0];
+                            const col = jmColors[jmStops[0].world];
+                            const ns = 'http://www.w3.org/2000/svg';
+                            const pulse = document.createElementNS(ns, 'circle');
+                            pulse.setAttribute('cx', p0.x);
+                            pulse.setAttribute('cy', p0.y);
+                            pulse.setAttribute('fill', 'none');
+                            pulse.setAttribute('stroke', col);
+                            pulse.setAttribute('stroke-width', '1.5');
+                            const animR = document.createElementNS(ns, 'animate');
+                            animR.setAttribute('attributeName', 'r');
+                            animR.setAttribute('values', '8;20;8');
+                            animR.setAttribute('dur', '1.8s');
+                            animR.setAttribute('repeatCount', '3');
+                            pulse.appendChild(animR);
+                            const animO = document.createElementNS(ns, 'animate');
+                            animO.setAttribute('attributeName', 'stroke-opacity');
+                            animO.setAttribute('values', '0.6;0;0.6');
+                            animO.setAttribute('dur', '1.8s');
+                            animO.setAttribute('repeatCount', '3');
+                            pulse.appendChild(animO);
+                            svgEl.appendChild(pulse);
+                        }, 3500);
                     } else {
                         labels.forEach(l => l.classList.add('visible'));
                     }
