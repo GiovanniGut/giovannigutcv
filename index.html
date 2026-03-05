@@ -610,7 +610,7 @@
         }
         .jm-hint {
             font-family: var(--font-ui); font-size: 11px; font-style: italic;
-            color: var(--cenere); margin-bottom: 32px; opacity: 0.6;
+            color: var(--rosso); margin-bottom: 32px; opacity: 0.6;
         }
 
         /* ===== SIDEBAR HEADING ===== */
@@ -1291,7 +1291,7 @@
                     { year:"1999", world:"Diplomazia", label:"ONU — Santa Sede", sub:"Advisor a New York, a 22 anni", shift:"Primo giorno di lavoro: l'Assemblea Generale delle Nazioni Unite" },
                     { year:"2001", world:"Accademia", label:"Laurea in Scienze Politiche", sub:"Università di Firenze", shift:"Dove le idee incontrano le istituzioni" },
                     { year:"2004", world:"Management", label:"Master HR", sub:"Ernst & Young Business School", shift:"Imparare a parlare la lingua di chi decide" },
-                    { year:"2005", world:"Terzo settore", label:"MCL — Vicepresidente", sub:"Leadership nazionale · 17 anni", shift:"Dalla teoria alla costruzione di reti vere, con persone vere" },
+                    { year:"2005", world:"Terzo settore", label:"MCL — Movimento Cristiano Lavoratori", sub:"Leadership nazionale · fino alla Vicepresidenza", shift:"Dalla teoria alla costruzione di reti vere, con persone vere" },
                     { year:"2007", world:"Europa", label:"Conferenze internazionali", sub:"EZA · Varsavia, Porto, Bruxelles", shift:"Tre lingue, cinque paesi, un tavolo" },
                     { year:"2009", world:"Formazione", label:"Formatore — Università Cattolica", sub:"15 edizioni di alta formazione", shift:"Da dirigente a chi forma altri dirigenti" },
                     { year:"2010", world:"Ricerca", label:"PhD Economia del Lavoro", sub:"Fondazione Marco Biagi, Modena", shift:"Dall'azione al pensiero sistematico su quello che fai" },
@@ -1397,8 +1397,8 @@
                     const hint = document.createElement('p');
                     hint.className = 'jm-hint';
                     hint.textContent = w < 480
-                        ? 'Tocca una tappa per scoprire i punti di svolta ↗'
-                        : 'Passa sopra le tappe per scoprire i punti di svolta ↗';
+                        ? 'Tocca una tappa per scoprire i punti di svolta'
+                        : 'Passa sopra le tappe per scoprire i punti di svolta';
                     container.appendChild(hint);
 
                     // Map wrapper
@@ -1542,8 +1542,7 @@
                         '<div class="jm-footer-row">' +
                             '<span class="jm-stat">' + uniqueWorlds.length + ' mondi · ' + years + ' anni</span>' +
                             '<span class="jm-tagline">Contesti diversi, lo stesso gesto.</span>' +
-                        '</div>' +
-                        '<p class="jm-footer-text">Questa mappa è lo strumento che uso nel coaching: trovare il pattern dentro le svolte. Il primo caso studio sono io.</p>';
+                        '</div>';
                     container.appendChild(footer);
 
                     // Animate in
