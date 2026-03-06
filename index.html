@@ -768,9 +768,9 @@
 
                 <p class="hero-text--secondary">Professional Coach ICF-AICP, AI Trainer, PhD in Economia del Lavoro. Venticinque anni tra reti internazionali, terzo settore, scuole dove nessuno doveva restare indietro.</p>
 
-                <div class="mt-32">
-                    <a href="https://calendar.app.google/P3oipkVn6Bt5udK68" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Prenota una call con me</a>
-                </div>
+                <p class="mt-32" style="font-family:var(--font-title);font-style:italic;color:var(--rosso);font-size:15px;">
+                    <a href="#cv" class="journey-link" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--rosso);opacity:0.7;">Ogni svolta mi ha portato in un mondo nuovo. Vieni a vedere dove.</a>
+                </p>
             </div>
 
             <div class="hero-credentials reveal delay-3">
@@ -803,6 +803,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="mt-40 reveal delay-2" style="text-align:center;">
+                <a href="https://calendar.app.google/P3oipkVn6Bt5udK68" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Prenota una call con me</a>
             </div>
         </div>
     </section>
@@ -837,6 +840,10 @@
                 <div class="text-col reveal delay-1">
                     <p class="lead">Il mio modo di lavorare è sempre stato lo stesso: arrivo, ascolto, costruisco fiducia. Poi metto insieme strumenti da mondi diversi — coaching, ricerca, intelligenza artificiale, parola — per affrontare problemi che nessuno di quei mondi affronta da solo.</p>
                     <p>Contesti diversi, lo stesso sguardo. Il filo è questo: nessuno resta indietro.</p>
+
+                    <p style="font-family:var(--font-title);font-style:italic;color:var(--rosso);font-size:15px;margin-top:16px;">
+                        <a href="#cv" class="journey-link" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--rosso);opacity:0.7;">Ogni svolta mi ha portato in un mondo nuovo. Vieni a vedere dove.</a>
+                    </p>
 
                     <div class="press-callout-group" style="margin-bottom: 24px;">
                         <div class="press-callout press-callout--warm">
@@ -1257,6 +1264,27 @@
             });
         });
 
+        // Journey link: scroll to CV + open accordion
+        document.querySelectorAll('.journey-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const cvSection = document.getElementById('cv');
+                const accordion = document.getElementById('journey-accordion');
+                if (cvSection) {
+                    const headerOffset = 70;
+                    const elementPosition = cvSection.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.scrollY - headerOffset;
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                    // Open accordion after scroll
+                    setTimeout(() => {
+                        if (accordion && !accordion.open) {
+                            accordion.open = true;
+                        }
+                    }, 600);
+                }
+            });
+        });
+
         // Scroll reveal
         document.addEventListener("DOMContentLoaded", function() {
             const observer = new IntersectionObserver((entries) => {
@@ -1293,14 +1321,14 @@
                     { year:"2004", world:"Management", label:"Master HR", sub:"Ernst & Young Business School", shift:"Imparare a parlare la lingua di chi decide" },
                     { year:"2005", world:"Terzo settore", label:"MCL — Movimento Cristiano Lavoratori", sub:"Leadership nazionale · fino alla Vicepresidenza", shift:"Dalla teoria alla costruzione di reti vere, con persone vere" },
                     { year:"2007", world:"Europa", label:"Conferenze internazionali", sub:"EZA · Varsavia, Porto, Bruxelles", shift:"Tre lingue, cinque paesi, un tavolo" },
-                    { year:"2009", world:"Formazione", label:"Formatore — Università Cattolica", sub:"15 edizioni di alta formazione", shift:"Da dirigente a chi forma altri dirigenti" },
+                    { year:"2009", world:"Formazione", label:"MCL e Università Cattolica", sub:"15 edizioni di alta formazione insieme", shift:"Terzo settore e accademia insieme. Per formare chi guiderà" },
                     { year:"2010", world:"Ricerca", label:"PhD Economia del Lavoro", sub:"Fondazione Marco Biagi, Modena", shift:"Dall'azione al pensiero sistematico su quello che fai" },
                     { year:"2010", world:"Letteratura", label:"Primo libro di poesia", sub:"Senza mai fermarsi", shift:"Stesso anno del PhD. La stessa persona, due lingue che escono insieme" },
                     { year:"2020", world:"Voce", label:"Podcast", sub:"3 format · 50+ episodi", shift:"Dalla parola scritta alla parola detta" },
                     { year:"2022", world:"Educazione", label:"Direzione scolastica", sub:"Istituto San Giuseppe, Verona", shift:"Tutto il bagaglio in un posto dove nessuno può restare indietro" },
                     { year:"2024", world:"AI + Musica", label:"The Neural Gut Project", sub:"Poesia + AI + musica", shift:"La macchina diventa interlocutore. Nasce un modo nuovo di creare" },
                     { year:"2025", world:"Coaching", label:"Coach ICF-AICP", sub:"Professional Coaching Program", shift:"Venticinque anni di pratica trovano un nome e un metodo" },
-                    { year:"2026", world:"Coaching", label:"AI Trainer · Ricercatore", sub:"Fondazione Tarantelli · Freelance", shift:"Il viaggio continua. Tre fronti aperti, una mappa" },
+                    { year:"2026", world:"Coaching", label:"AI Trainer · Ricercatore", sub:"Fondazione Tarantelli · Freelance", shift:"I fili che correvano paralleli, adesso si intrecciano" },
                 ];
                 const jmColors = {
                     "Diplomazia":"#9B8A4A","Accademia":"#5A6B8B","Management":"#6E8B5A",
@@ -1320,7 +1348,7 @@
                     const mobile = w < 480;
                     const cx = mobile ? w * 0.18 : w * 0.5;
                     const amp = mobile ? w * 0.06 : w * 0.12;
-                    const rowH = mobile ? 105 : 115;
+                    const rowH = mobile ? 118 : 115;
                     const startY = 30;
                     return jmStops.map((_, i) => {
                         const ph = i * 0.85;
@@ -1511,8 +1539,12 @@
                         shiftEl.textContent = s.shift;
                         lbl.appendChild(shiftEl);
 
-                        // Hover on label
+                        // Hover on label (+ touch)
                         lbl.addEventListener('mouseenter', () => setHover(i));
+                        lbl.addEventListener('touchstart', (e) => {
+                            e.preventDefault();
+                            setHover(hoveredIdx === i ? null : i);
+                        }, { passive: false });
                         lbl.addEventListener('mouseleave', () => setHover(null));
 
                         mapDiv.appendChild(lbl);
